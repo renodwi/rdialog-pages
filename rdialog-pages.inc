@@ -73,7 +73,7 @@ stock rDialogPages_GetMaxPage(playerid)
     if (pageSize <= 0) return 0;
 
     new bool:hasHeader =
-        (rdialogpages_Style[playerid] == DIALOG_STYLE_TABLIST_HEADERS) &&
+        (rdialogpages_Style[playerid] == _:DIALOG_STYLE_TABLIST_HEADERS) &&
         (rdialogpages_ListitemExist[playerid][0]);
 
     new dataItems = totalItems - (hasHeader ? 1 : 0);
@@ -94,7 +94,7 @@ stock rDialogPages_OpenPage(playerid, page)
     new per = rdialogpages_ItemPerPage[playerid];
 
     new bool:hasHeader =
-        (rdialogpages_Style[playerid] == DIALOG_STYLE_TABLIST_HEADERS) &&
+        (rdialogpages_Style[playerid] == _:DIALOG_STYLE_TABLIST_HEADERS) &&
         (rdialogpages_ListitemExist[playerid][0]);
 
     new startIndex = (page - 1) * per + (hasHeader ? 1 : 0);
@@ -134,7 +134,7 @@ stock rDialogPages_OpenPage(playerid, page)
     format(caption, sizeof(caption), "%s (%d/%d)", rdialogpages_Caption[playerid], page, maxPage);
     ShowPlayerDialog(playerid, 
         DIALOG_PAGES_ID, 
-        rdialogpages_Style[playerid], 
+        t_DIALOG_STYLE:rdialogpages_Style[playerid], 
         caption, 
         chunk, 
         rdialogpages_Button1[playerid], 
@@ -182,7 +182,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
             if(rdialogpages_ListitemExist[playerid][i]) totalItems++;
 
         new bool:hasHeader =
-            (rdialogpages_Style[playerid] == DIALOG_STYLE_TABLIST_HEADERS) &&
+            (rdialogpages_Style[playerid] == _:DIALOG_STYLE_TABLIST_HEADERS) &&
             (rdialogpages_ListitemExist[playerid][0]);
 
         new dataTotal = totalItems - (hasHeader ? 1 : 0);
